@@ -1,37 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Defect Management Tool</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        .status {
-            margin-top: 20px;
-            padding: 15px;
-            background: #dff0d8;
-            color: #2d662d;
-            border-radius: 8px;
-            display: inline-block;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>🚀 Defect Management Tool</h1>
-    <p>This project is successfully deployed via GitHub Pages.</p>
-
-    <div class="status">
-        ✅ Deployment successful – Internet connection verified.
-    </div>
-
-</body>
-</html>
+<form id="defectForm">
+  <input type="text" id="defectTitle" required placeholder="Enter defect title">
+  <textarea id="defectDescription" required></textarea>
+  <select id="severity" required>
+    <option value="low">Low</option>
+    <!-- ... -->
+  </select>
+  <button type="submit">Submit Defect</button>
+  <button type="reset">Reset Form</button>
+</form>

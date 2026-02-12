@@ -1,5 +1,5 @@
 {
-  "name": "defect-management-tool-mini-version-",
+  "name": "defect-management-tool-mini-version",
   "version": "1.0.0",
   "description": "A lightweight defect tracking system built with Node.js and PostgreSQL",
   "main": "index.js",

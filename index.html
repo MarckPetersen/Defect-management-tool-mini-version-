@@ -1,10 +1,143 @@
-<form id="defectForm">
-  <input type="text" id="defectTitle" required placeholder="Enter defect title">
-  <textarea id="defectDescription" required></textarea>
-  <select id="severity" required>
-    <option value="low">Low</option>
-    <!-- ... -->
-  </select>
-  <button type="submit">Submit Defect</button>
-  <button type="reset">Reset Form</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Defect Management Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2f3640;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #f5f6fa;
+            width: 600px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .submit-btn {
+            flex: 1;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .reset-btn {
+            flex: 1;
+            padding: 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .reset-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Defect Management Tool</h1>
+    <div class="subtitle">Report and track defects efficiently</div>
+
+    <form>
+        <label>Defect Title *</label>
+        <input type="text" placeholder="Enter defect title" required>
+
+        <label>Description *</label>
+        <textarea placeholder="Describe the defect in detail" required></textarea>
+
+        <label>Severity *</label>
+        <select required>
+            <option value="">-- Select Severity --</option>
+            <option>Critical</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+        </select>
+
+        <label>Status</label>
+        <select>
+            <option>New</option>
+            <option>Under Investigation</option>
+            <option>In Progress</option>
+            <option>Ready for Retest</option>
+            <option>Closed</option>
+            <option>Rejected</option>
+        </select>
+
+        <label>Reported By</label>
+        <input type="text" placeholder="Enter your name">
+
+        <label>Assigned To</label>
+        <input type="text" placeholder="Assign to team member">
+
+        <div class="buttons">
+            <button type="submit" class="submit-btn">Submit Defect</button>
+            <button type="reset" class="reset-btn">Reset Form</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

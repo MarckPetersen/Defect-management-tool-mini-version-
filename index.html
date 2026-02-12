@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defect Management Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐛 Defect Management Tool</h1>
+            <p>Structured defect tracking for software testing</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Create/Edit Defect Form -->
+            <section class="form-section">
+                <h2 id="form-title">Create New Defect</h2>
+                <form id="defect-form">
+                    <input type="hidden" id="defect-id">
+                    
+                    <div class="form-group">
+                        <label for="title">Title *</label>
+                        <input type="text" id="title" required placeholder="Enter defect title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea id="description" required placeholder="Describe the defect in detail" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="severity">Severity *</label>
+                            <select id="severity" required>
+                                <option value="">Select severity</option>
+                                <option value="Critical">Critical</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priority">Priority *</label>
+                            <select id="priority" required>
+                                <option value="">Select priority</option>
+                                <option value="P1">P1 - Urgent</option>
+                                <option value="P2">P2 - High</option>
+                                <option value="P3">P3 - Medium</option>
+                                <option value="P4">P4 - Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="status">Status *</label>
+                            <select id="status" required>
+                                <option value="New">New</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="owner">Owner *</label>
+                            <input type="text" id="owner" required placeholder="Assigned to">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Create Defect</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-btn" style="display: none;">Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <h2>Filter Defects</h2>
+                <div class="filter-controls">
+                    <input type="text" id="search-input" placeholder="Search by title or description...">
+                    
+                    <select id="filter-status">
+                        <option value="">All Statuses</option>
+                        <option value="New">New</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+
+                    <select id="filter-severity">
+                        <option value="">All Severities</option>
+                        <option value="Critical">Critical</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+
+                    <select id="filter-priority">
+                        <option value="">All Priorities</option>
+                        <option value="P1">P1 - Urgent</option>
+                        <option value="P2">P2 - High</option>
+                        <option value="P3">P3 - Medium</option>
+                        <option value="P4">P4 - Low</option>
+                    </select>
+
+                    <button class="btn btn-secondary" id="clear-filters">Clear Filters</button>
+                </div>
+            </section>
+
+            <!-- Defects List -->
+            <section class="defects-section">
+                <div class="section-header">
+                    <h2>Defects</h2>
+                    <span id="defect-count" class="count-badge">0 defects</span>
+                </div>
+                <div id="defects-list" class="defects-list">
+                    <p class="empty-state">No defects found. Create your first defect above!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

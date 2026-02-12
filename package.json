@@ -1,0 +1,37 @@
+{
+  "name": "defect-management-tool-mini-version",
+  "version": "1.0.0",
+  "description": "A lightweight defect tracking system built with Node.js and PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "node src/db/migrations/001_initial_schema.js",
+    "seed": "node src/db/migrations/002_seed_data.js",
+    "db:setup": "npm run migrate && npm run seed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarckPetersen/Defect-management-tool-mini-version-.git"
+  },
+  "keywords": [
+    "defect-tracking",
+    "bug-tracking",
+    "issue-tracking",
+    "postgresql",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MarckPetersen/Defect-management-tool-mini-version-/issues"
+  },
+  "homepage": "https://github.com/MarckPetersen/Defect-management-tool-mini-version-#readme",
+  "dependencies": {
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

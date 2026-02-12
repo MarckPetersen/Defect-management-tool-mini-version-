@@ -145,7 +145,6 @@ class Defect:
         self.status_history.append(status_change)
         
         # Update the status
-        old_status = self.status
         self.status = new_status
         
         return True

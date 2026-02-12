@@ -206,7 +206,7 @@ Records a single status change event.
 
 ```
 .
-├── README.md                    # This file
+├── README.md                    # Project overview
 ├── WORKFLOW_DOCUMENTATION.md    # This documentation
 ├── defect_workflow.py           # Main implementation
 ├── test_defect_workflow.py      # Unit tests

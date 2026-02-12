@@ -123,3 +123,142 @@ def test_get_defect_not_found(client):
     assert response.status_code == 404
     data = json.loads(response.data)
     assert 'error' in data
+
+def test_filter_defects_by_status(client):
+    """Test filtering defects by status."""
+    # Create defects with different statuses
+    defect1 = {
+        "title": "Open Bug",
+        "description": "This is an open bug",
+        "severity": "High",
+        "status": "Open"
+    }
+    defect2 = {
+        "title": "Closed Bug",
+        "description": "This is a closed bug",
+        "severity": "Medium",
+        "status": "Closed"
+    }
+    defect3 = {
+        "title": "In Progress Bug",
+        "description": "This is in progress",
+        "severity": "Critical",
+        "status": "In Progress"
+    }
+    
+    client.post('/defects', data=json.dumps(defect1), content_type='application/json')
+    client.post('/defects', data=json.dumps(defect2), content_type='application/json')
+    client.post('/defects', data=json.dumps(defect3), content_type='application/json')
+    
+    # Filter by status=Open
+    response = client.get('/defects?status=Open')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert len(data) == 1
+    assert data[0]['status'] == 'Open'
+    assert data[0]['title'] == 'Open Bug'
+    
+    # Filter by status=Closed
+    response = client.get('/defects?status=Closed')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert len(data) == 1
+    assert data[0]['status'] == 'Closed'
+    assert data[0]['title'] == 'Closed Bug'
+
+def test_filter_defects_by_severity(client):
+    """Test filtering defects by severity."""
+    # Create defects with different severities
+    defect1 = {
+        "title": "Critical Bug",
+        "description": "Critical issue",
+        "severity": "Critical"
+    }
+    defect2 = {
+        "title": "High Bug",
+        "description": "High priority issue",
+        "severity": "High"
+    }
+    defect3 = {
+        "title": "Medium Bug",
+        "description": "Medium priority issue",
+        "severity": "Medium"
+    }
+    defect4 = {
+        "title": "Low Bug",
+        "description": "Low priority issue",
+        "severity": "Low"
+    }
+    
+    client.post('/defects', data=json.dumps(defect1), content_type='application/json')
+    client.post('/defects', data=json.dumps(defect2), content_type='application/json')
+    client.post('/defects', data=json.dumps(defect3), content_type='application/json')
+    client.post('/defects', data=json.dumps(defect4), content_type='application/json')
+    
+    # Filter by severity=Critical
+    response = client.get('/defects?severity=Critical')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert len(data) == 1
+    assert data[0]['severity'] == 'Critical'
+    assert data[0]['title'] == 'Critical Bug'
+    
+    # Filter by severity=High
+    response = client.get('/defects?severity=High')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert len(data) == 1
+    assert data[0]['severity'] == 'High'
+
+def test_filter_defects_by_status_and_severity(client):
+    """Test filtering defects by both status and severity."""
+    # Create defects with various combinations
+    defect1 = {
+        "title": "Open Critical Bug",
+        "description": "Open and critical",
+        "severity": "Critical",
+        "status": "Open"
+    }
+    defect2 = {
+        "title": "Open High Bug",
+        "description": "Open and high",
+        "severity": "High",
+        "status": "Open"
+    }
+    defect3 = {
+        "title": "Closed Critical Bug",
+        "description": "Closed and critical",
+        "severity": "Critical",
+        "status": "Closed"
+    }
+    
+    client.post('/defects', data=json.dumps(defect1), content_type='application/json')
+    client.post('/defects', data=json.dumps(defect2), content_type='application/json')
+    client.post('/defects', data=json.dumps(defect3), content_type='application/json')
+    
+    # Filter by status=Open and severity=Critical
+    response = client.get('/defects?status=Open&severity=Critical')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert len(data) == 1
+    assert data[0]['status'] == 'Open'
+    assert data[0]['severity'] == 'Critical'
+    assert data[0]['title'] == 'Open Critical Bug'
+
+def test_filter_defects_no_matches(client):
+    """Test filtering defects with no matches."""
+    # Create a defect
+    defect1 = {
+        "title": "Open Bug",
+        "description": "This is an open bug",
+        "severity": "High",
+        "status": "Open"
+    }
+    client.post('/defects', data=json.dumps(defect1), content_type='application/json')
+    
+    # Filter by non-existent status
+    response = client.get('/defects?status=NonExistent')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert len(data) == 0
+    assert data == []

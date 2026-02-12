@@ -6,6 +6,7 @@ A lightweight REST API for managing software defects built with Python Flask.
 
 - ✅ Create new defects
 - ✅ Get all defects
+- ✅ **Filter defects by status and severity**
 - ✅ Get a specific defect by ID
 - ✅ In-memory storage (no database required)
 - ✅ Comprehensive test coverage
@@ -90,7 +91,14 @@ Response (201 Created):
 ### Get All Defects
 ```
 GET /defects
+GET /defects?status={status}
+GET /defects?severity={severity}
+GET /defects?status={status}&severity={severity}
 ```
+
+**Query Parameters (all optional):**
+- `status` (string): Filter by defect status (e.g., `Open`, `Closed`, `In Progress`)
+- `severity` (string): Filter by severity level (`Critical`, `High`, `Medium`, `Low`)
 
 Response (200 OK):
 ```json
@@ -105,6 +113,21 @@ Response (200 OK):
     "updated_at": "2026-02-12T12:00:00.000000Z"
   }
 ]
+```
+
+**Examples:**
+```bash
+# Get all defects
+curl http://localhost:5000/defects
+
+# Get only open defects
+curl http://localhost:5000/defects?status=Open
+
+# Get only critical defects
+curl http://localhost:5000/defects?severity=Critical
+
+# Get open critical defects
+curl 'http://localhost:5000/defects?status=Open&severity=Critical'
 ```
 
 ### Get Defect by ID

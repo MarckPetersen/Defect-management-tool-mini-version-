@@ -61,8 +61,21 @@ def create_defect():
 
 @app.route('/defects', methods=['GET'])
 def get_defects():
-    """Get all defects."""
-    return jsonify(list(defects.values())), 200
+    """Get all defects with optional filtering by status and severity."""
+    status_filter = request.args.get('status')
+    severity_filter = request.args.get('severity')
+    
+    filtered_defects = list(defects.values())
+    
+    # Filter by status if provided
+    if status_filter:
+        filtered_defects = [d for d in filtered_defects if d['status'] == status_filter]
+    
+    # Filter by severity if provided
+    if severity_filter:
+        filtered_defects = [d for d in filtered_defects if d['severity'] == severity_filter]
+    
+    return jsonify(filtered_defects), 200
 
 @app.route('/defects/<defect_id>', methods=['GET'])
 def get_defect(defect_id: str):

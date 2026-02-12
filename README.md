@@ -30,6 +30,12 @@ Start the server:
 python app.py
 ```
 
+For development with debug mode (not recommended for production):
+```bash
+FLASK_DEBUG=true python app.py
+```
+```
+
 The API will be available at `http://localhost:5000`
 
 ## API Endpoints
